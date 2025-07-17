@@ -1,13 +1,14 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { GraduationCap, Users, Award, Target, Heart, BookOpen, Star, Globe, TrendingUp } from 'lucide-react';
+import { GraduationCap, Users, Award, Target, Heart, BookOpen, Star, Globe, TrendingUp, Menu, X, Zap } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 const About = () => {
   const navigate = useNavigate();
   const [scrollY, setScrollY] = useState(0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,6 +18,14 @@ const About = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
 
   const values = [
     {
@@ -88,6 +97,16 @@ const About = () => {
           50% { transform: translateY(-20px) rotate(180deg); }
         }
         
+        @keyframes mobile-menu-slide {
+          0% { opacity: 0; transform: translateY(-100%); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes mobile-menu-item {
+          0% { opacity: 0; transform: translateX(-30px); }
+          100% { opacity: 1; transform: translateX(0); }
+        }
+        
         @keyframes pulse-glow {
           0%, 100% { box-shadow: 0 0 20px rgba(147, 51, 234, 0.3); }
           50% { box-shadow: 0 0 40px rgba(147, 51, 234, 0.6), 0 0 60px rgba(147, 51, 234, 0.3); }
@@ -156,12 +175,97 @@ const About = () => {
               <Link to="/tutors" className="text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform">Tutors</Link>
               <Link to="/notices" className="text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform">Notices</Link>
             </nav>
-            <div className="flex items-center space-x-4">
+            
+            {/* Mobile menu button */}
+            <div className="md:hidden">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={toggleMobileMenu}
+                className="text-white hover:text-purple-300 hover:bg-white/10"
+              >
+                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </Button>
+            </div>
+            
+            <div className="hidden md:flex items-center space-x-4">
               {/* Login and Signup buttons hidden */}
             </div>
           </div>
         </div>
       </header>
+
+      {/* Mobile Navigation Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden fixed inset-0 z-50 bg-black/90 backdrop-blur-md" style={{ animation: 'mobile-menu-slide 0.3s ease-out forwards' }}>
+          <div className="flex flex-col items-center justify-center h-full space-y-8">
+            <div className="absolute top-4 right-4">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={closeMobileMenu}
+                className="text-white hover:text-purple-300 hover:bg-white/10"
+              >
+                <X className="w-6 h-6" />
+              </Button>
+            </div>
+            <nav className="flex flex-col items-center space-y-6 text-center">
+              <Link 
+                to="/" 
+                onClick={closeMobileMenu}
+                className="text-2xl text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform"
+                style={{ animation: 'mobile-menu-item 0.4s ease-out forwards', animationDelay: '0.1s' }}
+              >
+                Home
+              </Link>
+              <Link 
+                to="/about" 
+                onClick={closeMobileMenu}
+                className="text-2xl text-purple-300 font-medium"
+                style={{ animation: 'mobile-menu-item 0.4s ease-out forwards', animationDelay: '0.15s' }}
+              >
+                About
+              </Link>
+              <Link 
+                to="/courses" 
+                onClick={closeMobileMenu}
+                className="text-2xl text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform"
+                style={{ animation: 'mobile-menu-item 0.4s ease-out forwards', animationDelay: '0.2s' }}
+              >
+                Courses
+              </Link>
+              <Link 
+                to="/tutors" 
+                onClick={closeMobileMenu}
+                className="text-2xl text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform"
+                style={{ animation: 'mobile-menu-item 0.4s ease-out forwards', animationDelay: '0.25s' }}
+              >
+                Tutors
+              </Link>
+              <Link 
+                to="/notices" 
+                onClick={closeMobileMenu}
+                className="text-2xl text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform"
+                style={{ animation: 'mobile-menu-item 0.4s ease-out forwards', animationDelay: '0.3s' }}
+              >
+                Notices
+              </Link>
+              <div className="pt-6" style={{ animation: 'mobile-menu-item 0.4s ease-out forwards', animationDelay: '0.35s' }}>
+                <Button 
+                  onClick={() => {
+                    navigate('/admission');
+                    closeMobileMenu();
+                  }}
+                  className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-8 py-3 text-lg transition-all duration-300 hover:scale-105"
+                >
+                  <Zap className="w-5 h-5 mr-2" />
+                  Enroll Now
+                </Button>
+              </div>
+            </nav>
+          </div>
+        </div>
+      )}
 
       {/* Hero Section */}
       <section className="py-24 relative">

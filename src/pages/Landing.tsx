@@ -2,13 +2,15 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Star, Globe, ArrowRight, BookOpen, Users, Trophy, Award, GraduationCap, TrendingUp, Zap, Target, Heart, Phone, Calendar, FileText, MessageSquare, Shield } from 'lucide-react';
+import { Star, Globe, ArrowRight, BookOpen, Users, Trophy, Award, GraduationCap, TrendingUp, Zap, Target, Heart, Phone, Calendar, FileText, MessageSquare, Shield, Menu, X } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 const Landing = () => {
   const navigate = useNavigate();
   const [scrollY, setScrollY] = useState(0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showSplash, setShowSplash] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,10 +19,36 @@ const Landing = () => {
 
     window.addEventListener('scroll', handleScroll);
 
+    // Check if splash has been shown in this session
+    const hasShownSplash = sessionStorage.getItem('splashShown');
+    
+    if (!hasShownSplash) {
+      setShowSplash(true);
+      sessionStorage.setItem('splashShown', 'true');
+      
+      // Hide splash screen after 4 seconds to enjoy the animations
+      const splashTimer = setTimeout(() => {
+        setShowSplash(false);
+      }, 4000);
+      
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+        clearTimeout(splashTimer);
+      };
+    }
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
 
   const features = [
     {
@@ -73,6 +101,120 @@ const Landing = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-x-hidden">
+      {/* Splash Screen */}
+      {showSplash && (
+        <div className={`fixed inset-0 z-[9999] gradient-bg flex items-center justify-center overflow-hidden ${showSplash ? 'splash-screen' : 'splash-exit'}`}>
+          {/* Animated Background Particles */}
+          <div className="absolute inset-0 overflow-hidden">
+            {Array.from({ length: 20 }).map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-4 h-4 bg-white/20 rounded-full floating-particle"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 6}s`,
+                  animationDuration: `${4 + Math.random() * 4}s`
+                }}
+              />
+            ))}
+          </div>
+          
+          {/* Orbiting Elements */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="relative">
+              {Array.from({ length: 3 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute w-2 h-2 bg-white/40 rounded-full orbit-element"
+                  style={{
+                    animationDelay: `${i * 5}s`,
+                    animationDuration: `${12 + i * 3}s`
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+          
+          {/* Ripple Effects */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-1 h-1 border border-white/30 rounded-full ripple-effect"
+                style={{
+                  animationDelay: `${i * 0.5}s`
+                }}
+              />
+            ))}
+          </div>
+          
+          {/* Main Content */}
+          <div className="text-center relative z-10">
+            <h1 className="text-6xl md:text-8xl font-bold text-white tracking-wider text-reveal">
+              <span style={{ fontFamily: 'Georgia, serif' }} className="flex flex-col md:flex-row md:gap-4 items-center">
+                <span className="block">
+                  {'Impact'.split('').map((letter, index) => (
+                    <span
+                      key={index}
+                      className="inline-block"
+                      style={{
+                        animationDelay: `${index * 0.1}s`,
+                        animation: 'letter-reveal 0.8s ease-out forwards'
+                      }}
+                    >
+                      {letter}
+                    </span>
+                  ))}
+                </span>
+                <span className="block">
+                  {'School'.split('').map((letter, index) => (
+                    <span
+                      key={index + 6}
+                      className="inline-block"
+                      style={{
+                        animationDelay: `${(index + 7) * 0.1}s`,
+                        animation: 'letter-reveal 0.8s ease-out forwards'
+                      }}
+                    >
+                      {letter}
+                    </span>
+                  ))}
+                </span>
+              </span>
+            </h1>
+            
+            {/* Animated Underline */}
+            <div className="mt-8 relative mx-auto w-64">
+              <div className="h-1 bg-white/50 rounded-full overflow-hidden">
+                <div className="h-full bg-white rounded-full animate-pulse" style={{
+                  animation: 'pulse 2s ease-in-out infinite, gradient-wave 3s ease infinite',
+                  backgroundSize: '200% 100%',
+                  background: 'linear-gradient(90deg, rgba(255,255,255,0.5), rgba(255,255,255,1), rgba(255,255,255,0.5))'
+                }}></div>
+              </div>
+            </div>
+            
+            {/* Subtitle */}
+            <p className="mt-6 text-xl md:text-2xl text-white/80 font-light tracking-wide" style={{
+              animation: 'letter-reveal 1s ease-out forwards',
+              animationDelay: '1.5s',
+              opacity: 0
+            }}>
+              Transforming Education
+            </p>
+          </div>
+          
+          {/* Corner Decorations */}
+          <div className="absolute top-10 left-10 w-20 h-20 border-l-2 border-t-2 border-white/30 floating-particle" style={{ animationDelay: '0.5s' }}></div>
+          <div className="absolute top-10 right-10 w-20 h-20 border-r-2 border-t-2 border-white/30 floating-particle" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute bottom-10 left-10 w-20 h-20 border-l-2 border-b-2 border-white/30 floating-particle" style={{ animationDelay: '1.5s' }}></div>
+          <div className="absolute bottom-10 right-10 w-20 h-20 border-r-2 border-b-2 border-white/30 floating-particle" style={{ animationDelay: '2s' }}></div>
+        </div>
+      )}
+      
+      {/* Main Content - Hidden during splash */}
+      <div className={`transition-opacity duration-1000 ${showSplash ? 'opacity-0' : 'opacity-100'}`}>
       {/* Custom CSS for animations */}
       <style>{`
         @keyframes float {
@@ -92,6 +234,57 @@ const Landing = () => {
           0%, 100% { transform: translateY(0px) translateX(0px); }
           33% { transform: translateY(-8px) translateX(5px); }
           66% { transform: translateY(5px) translateX(-8px); }
+        }
+        
+        @keyframes splash-fade-in {
+          0% { opacity: 0; transform: scale(0.8); }
+          50% { opacity: 1; transform: scale(1.05); }
+          100% { opacity: 1; transform: scale(1); }
+        }
+        
+        @keyframes splash-fade-out {
+          0% { opacity: 1; transform: scale(1); }
+          100% { opacity: 0; transform: scale(1.1); }
+        }
+        
+        @keyframes gradient-wave {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        
+        @keyframes float-particle {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-30px) rotate(180deg); }
+        }
+        
+        @keyframes text-glow {
+          0%, 100% { text-shadow: 0 0 20px rgba(255,255,255,0.5), 0 0 40px rgba(255,255,255,0.3); }
+          50% { text-shadow: 0 0 30px rgba(255,255,255,0.8), 0 0 60px rgba(255,255,255,0.5), 0 0 80px rgba(147,51,234,0.3); }
+        }
+        
+        @keyframes letter-reveal {
+          0% { opacity: 0; transform: translateY(30px) rotateX(90deg); }
+          100% { opacity: 1; transform: translateY(0) rotateX(0deg); }
+        }
+        
+        @keyframes ripple {
+          0% { transform: scale(0); opacity: 1; }
+          100% { transform: scale(4); opacity: 0; }
+        }
+        
+        @keyframes orbit {
+          0% { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+          100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+        }
+        
+        @keyframes mobile-menu-slide {
+          0% { opacity: 0; transform: translateY(-100%); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes mobile-menu-item {
+          0% { opacity: 0; transform: translateX(-30px); }
+          100% { opacity: 1; transform: translateX(0); }
         }
         
         @keyframes pulse-glow {
@@ -126,6 +319,44 @@ const Landing = () => {
         
         .animate-float-gentle {
           animation: float-gentle 15s ease-in-out infinite;
+        }
+        
+        .splash-screen {
+          animation: splash-fade-in 1s ease-out forwards;
+        }
+        
+        .splash-exit {
+          animation: splash-fade-out 1s ease-out forwards;
+        }
+        
+        .mobile-menu-container {
+          animation: mobile-menu-slide 0.3s ease-out forwards;
+        }
+        
+        .mobile-menu-item {
+          animation: mobile-menu-item 0.4s ease-out forwards;
+        }
+        
+        .gradient-bg {
+          background: linear-gradient(45deg, #8B5CF6, #EC4899, #3B82F6, #10B981, #F59E0B);
+          background-size: 400% 400%;
+          animation: gradient-wave 8s ease infinite;
+        }
+        
+        .floating-particle {
+          animation: float-particle 6s ease-in-out infinite;
+        }
+        
+        .text-reveal {
+          animation: text-glow 3s ease-in-out infinite, letter-reveal 0.8s ease-out forwards;
+        }
+        
+        .ripple-effect {
+          animation: ripple 2s linear infinite;
+        }
+        
+        .orbit-element {
+          animation: orbit 15s linear infinite;
         }
         
         .animate-pulse-glow {
@@ -206,12 +437,97 @@ const Landing = () => {
               <Link to="/tutors" className="text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform">Tutors</Link>
               <Link to="/notices" className="text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform">Notices</Link>
             </nav>
-            <div className="flex items-center space-x-4">
+            
+            {/* Mobile menu button */}
+            <div className="md:hidden">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={toggleMobileMenu}
+                className="text-white hover:text-purple-300 hover:bg-white/10"
+              >
+                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </Button>
+            </div>
+            
+            <div className="hidden md:flex items-center space-x-4">
               {/* Login and Signup buttons hidden */}
             </div>
           </div>
         </div>
       </header>
+
+      {/* Mobile Navigation Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden fixed inset-0 z-50 bg-black/90 backdrop-blur-md mobile-menu-container">
+          <div className="flex flex-col items-center justify-center h-full space-y-8">
+            <div className="absolute top-4 right-4">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={closeMobileMenu}
+                className="text-white hover:text-purple-300 hover:bg-white/10"
+              >
+                <X className="w-6 h-6" />
+              </Button>
+            </div>
+            <nav className="flex flex-col items-center space-y-6 text-center">
+              <Link 
+                to="/" 
+                onClick={closeMobileMenu}
+                className="text-2xl text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform mobile-menu-item"
+                style={{ animationDelay: '0.1s' }}
+              >
+                Home
+              </Link>
+              <Link 
+                to="/about" 
+                onClick={closeMobileMenu}
+                className="text-2xl text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform mobile-menu-item"
+                style={{ animationDelay: '0.15s' }}
+              >
+                About
+              </Link>
+              <Link 
+                to="/courses" 
+                onClick={closeMobileMenu}
+                className="text-2xl text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform mobile-menu-item"
+                style={{ animationDelay: '0.2s' }}
+              >
+                Courses
+              </Link>
+              <Link 
+                to="/tutors" 
+                onClick={closeMobileMenu}
+                className="text-2xl text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform mobile-menu-item"
+                style={{ animationDelay: '0.25s' }}
+              >
+                Tutors
+              </Link>
+              <Link 
+                to="/notices" 
+                onClick={closeMobileMenu}
+                className="text-2xl text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform mobile-menu-item"
+                style={{ animationDelay: '0.3s' }}
+              >
+                Notices
+              </Link>
+              <div className="pt-6 mobile-menu-item" style={{ animationDelay: '0.35s' }}>
+                <Button 
+                  onClick={() => {
+                    navigate('/admission');
+                    closeMobileMenu();
+                  }}
+                  className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-8 py-3 text-lg transition-all duration-300 hover:scale-105"
+                >
+                  <Zap className="w-5 h-5 mr-2" />
+                  Enroll Now
+                </Button>
+              </div>
+            </nav>
+          </div>
+        </div>
+      )}
 
       {/* Hero Section */}
       <section className="py-16 relative">
@@ -449,6 +765,7 @@ const Landing = () => {
           </div>
         </div>
       </footer>
+      </div>
     </div>
   );
 };

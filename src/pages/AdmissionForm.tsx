@@ -6,11 +6,13 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useNavigate, Link } from 'react-router-dom';
-import { useState } from 'react';
-import { FileText, User, Phone, Mail, MapPin, Calendar, GraduationCap, Star } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { FileText, User, Phone, Mail, MapPin, Calendar, GraduationCap, Star, Menu, X, Zap } from 'lucide-react';
 
 const AdmissionForm = () => {
   const navigate = useNavigate();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const [formData, setFormData] = useState({
     studentName: '',
     dateOfBirth: '',
@@ -26,13 +28,38 @@ const AdmissionForm = () => {
     agreeToTerms: false
   });
 
+  useEffect(() => {
+    // Check if we're coming back from FormSubmit success
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('submitted') === 'true') {
+      setShowSuccess(true);
+      
+      // Clean the URL
+      window.history.replaceState({}, document.title, window.location.pathname);
+      
+      // Hide success message after 4 seconds and redirect to home
+      setTimeout(() => {
+        setShowSuccess(false);
+        navigate('/');
+      }, 4000);
+    }
+  }, [navigate]);
+
   const handleSubmit = (e: React.FormEvent) => {
-    // FormSubmit will handle the form submission
-    // No need to prevent default as we want the form to submit normally
+    // FormSubmit will handle the form submission and redirect
+    // The success message will be shown when returning from FormSubmit
   };
 
   const handleInputChange = (field: string, value: string | boolean) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
   };
 
   return (
@@ -44,14 +71,37 @@ const AdmissionForm = () => {
           50% { transform: translateY(-20px) rotate(180deg); }
         }
         
-        @keyframes pulse-glow {
-          0%, 100% { box-shadow: 0 0 20px rgba(147, 51, 234, 0.3); }
-          50% { box-shadow: 0 0 40px rgba(147, 51, 234, 0.6), 0 0 60px rgba(147, 51, 234, 0.3); }
+        @keyframes mobile-menu-slide {
+          0% { opacity: 0; transform: translateY(-100%); }
+          100% { opacity: 1; transform: translateY(0); }
         }
         
-        @keyframes slide-up {
-          from { opacity: 0; transform: translateY(30px); }
-          to { opacity: 1; transform: translateY(0); }
+        @keyframes mobile-menu-item {
+          0% { opacity: 0; transform: translateX(-30px); }
+          100% { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes success-bounce {
+          0% { opacity: 0; transform: scale(0.3) rotate(-10deg); }
+          50% { opacity: 1; transform: scale(1.1) rotate(5deg); }
+          70% { transform: scale(0.95) rotate(-2deg); }
+          100% { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+        
+        @keyframes confetti-fall {
+          0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+          100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+        
+        @keyframes pulse-ring {
+          0% { transform: scale(0.8); opacity: 1; }
+          50% { transform: scale(1.2); opacity: 0.5; }
+          100% { transform: scale(1.5); opacity: 0; }
+        }
+        
+        @keyframes text-shine {
+          0% { background-position: -200% center; }
+          100% { background-position: 200% center; }
         }
         
         .animate-float {
@@ -64,6 +114,27 @@ const AdmissionForm = () => {
         
         .animate-slide-up {
           animation: slide-up 0.8s ease-out forwards;
+        }
+        
+        .success-animation {
+          animation: success-bounce 0.8s ease-out forwards;
+        }
+        
+        .confetti-piece {
+          animation: confetti-fall 3s linear forwards;
+        }
+        
+        .pulse-ring {
+          animation: pulse-ring 2s ease-out infinite;
+        }
+        
+        .text-shine {
+          background: linear-gradient(90deg, #fff 25%, #a855f7 50%, #fff 75%);
+          background-size: 200% auto;
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: text-shine 2s linear infinite;
         }
       `}</style>
 
@@ -95,9 +166,93 @@ const AdmissionForm = () => {
               <Link to="/tutors" className="text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform">Tutors</Link>
               <Link to="/notices" className="text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform">Notices</Link>
             </nav>
+            
+            {/* Mobile menu button */}
+            <div className="md:hidden">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={toggleMobileMenu}
+                className="text-white hover:text-purple-300 hover:bg-white/10"
+              >
+                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </Button>
+            </div>
           </div>
         </div>
       </header>
+
+      {/* Mobile Navigation Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden fixed inset-0 z-50 bg-black/90 backdrop-blur-md" style={{ animation: 'mobile-menu-slide 0.3s ease-out forwards' }}>
+          <div className="flex flex-col items-center justify-center h-full space-y-8">
+            <div className="absolute top-4 right-4">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={closeMobileMenu}
+                className="text-white hover:text-purple-300 hover:bg-white/10"
+              >
+                <X className="w-6 h-6" />
+              </Button>
+            </div>
+            <nav className="flex flex-col items-center space-y-6 text-center">
+              <Link 
+                to="/" 
+                onClick={closeMobileMenu}
+                className="text-2xl text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform"
+                style={{ animation: 'mobile-menu-item 0.4s ease-out forwards', animationDelay: '0.1s' }}
+              >
+                Home
+              </Link>
+              <Link 
+                to="/about" 
+                onClick={closeMobileMenu}
+                className="text-2xl text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform"
+                style={{ animation: 'mobile-menu-item 0.4s ease-out forwards', animationDelay: '0.15s' }}
+              >
+                About
+              </Link>
+              <Link 
+                to="/courses" 
+                onClick={closeMobileMenu}
+                className="text-2xl text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform"
+                style={{ animation: 'mobile-menu-item 0.4s ease-out forwards', animationDelay: '0.2s' }}
+              >
+                Courses
+              </Link>
+              <Link 
+                to="/tutors" 
+                onClick={closeMobileMenu}
+                className="text-2xl text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform"
+                style={{ animation: 'mobile-menu-item 0.4s ease-out forwards', animationDelay: '0.25s' }}
+              >
+                Tutors
+              </Link>
+              <Link 
+                to="/notices" 
+                onClick={closeMobileMenu}
+                className="text-2xl text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform"
+                style={{ animation: 'mobile-menu-item 0.4s ease-out forwards', animationDelay: '0.3s' }}
+              >
+                Notices
+              </Link>
+              <div className="pt-6" style={{ animation: 'mobile-menu-item 0.4s ease-out forwards', animationDelay: '0.35s' }}>
+                <Button 
+                  onClick={() => {
+                    navigate('/admission');
+                    closeMobileMenu();
+                  }}
+                  className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-8 py-3 text-lg transition-all duration-300 hover:scale-105"
+                >
+                  <Zap className="w-5 h-5 mr-2" />
+                  Enroll Now
+                </Button>
+              </div>
+            </nav>
+          </div>
+        </div>
+      )}
 
       {/* Main Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -366,6 +521,67 @@ const AdmissionForm = () => {
           </CardContent>
         </Card>
       </div>
+      
+      {/* Success Message Overlay */}
+      {showSuccess && (
+        <div className="fixed inset-0 z-[9999] bg-black/80 backdrop-blur-md flex items-center justify-center">
+          {/* Confetti */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {Array.from({ length: 50 }).map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-2 h-2 confetti-piece"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: '-10px',
+                  backgroundColor: ['#8B5CF6', '#EC4899', '#3B82F6', '#10B981', '#F59E0B'][Math.floor(Math.random() * 5)],
+                  animationDelay: `${Math.random() * 2}s`,
+                  animationDuration: `${2 + Math.random() * 2}s`
+                }}
+              />
+            ))}
+          </div>
+          
+          {/* Pulse Rings */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            {Array.from({ length: 3 }).map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-32 h-32 border-2 border-purple-400/30 rounded-full pulse-ring"
+                style={{ animationDelay: `${i * 0.5}s` }}
+              />
+            ))}
+          </div>
+          
+          {/* Main Success Message */}
+          <div className="text-center relative z-10 success-animation">
+            <div className="mb-8">
+              <div className="w-24 h-24 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <Star className="w-12 h-12 text-white animate-spin" style={{ animationDuration: '2s' }} />
+              </div>
+            </div>
+            
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 text-shine">
+              Application Submitted!
+            </h1>
+            
+            <p className="text-xl md:text-2xl text-gray-300 mb-6 max-w-lg mx-auto">
+              Thank you for choosing Impact School! We've received your admission application and will contact you soon.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <div className="flex items-center text-green-400">
+                <Star className="w-5 h-5 mr-2" />
+                <span>Application ID: IS{Math.floor(Math.random() * 10000).toString().padStart(4, '0')}</span>
+              </div>
+            </div>
+            
+            <p className="text-sm text-gray-400 mt-8">
+              Redirecting to home page...
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
