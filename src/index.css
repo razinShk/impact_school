@@ -103,3 +103,110 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+/* Gallery Page Styles */
+@layer components {
+  .gallery-section {
+    scroll-snap-align: start;
+  }
+
+  .gallery-container {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+    scroll-behavior: smooth;
+  }
+
+  /* Smooth scrolling for gallery */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar for gallery */
+  .gallery-container::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  .gallery-container::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .gallery-container::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+
+  /* Image preloading */
+  .gallery-image {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity;
+  }
+
+    /* Thumbnail hover effects */
+  .gallery-thumbnail {
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .gallery-thumbnail:hover {
+    transform: scale(1.05);
+  }
+
+  /* Text reveal animation */
+  .text-reveal {
+    animation: textReveal 0.8s ease-out forwards;
+  }
+
+  @keyframes textReveal {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Fade in animation for sections */
+  .fade-in {
+    animation: fadeIn 1s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+    /* Infinite scroll indicator animation */
+  .infinite-indicator {
+    animation: pulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulse {
+ 
+    0%,
+    100% {
+      opacity: 0.6;
+    }
+ 
+    50% {
+      opacity: 1;
+    }
+  }
+  
+  /* Gallery panel styling */
+  .gallery-panel {
+    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+  }
+}

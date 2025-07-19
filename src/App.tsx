@@ -7,11 +7,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import About from "./pages/About";
 import Courses from "./pages/Courses";
-import Tutors from "./pages/Tutors";
-import Notices from "./pages/Notices";
 import Login from "./pages/Login";
 import Index from "./pages/Index";
 import AdmissionForm from "./pages/AdmissionForm";
+import TeacherEnrollment from "./pages/TeacherEnrollment";
+import Gallery from "./pages/Gallery";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,9 +26,9 @@ const App = () => (
           <Route path="/" element={<Landing />} />
           <Route path="/about" element={<About />} />
           <Route path="/courses" element={<Courses />} />
-          <Route path="/tutors" element={<Tutors />} />
-          <Route path="/notices" element={<Notices />} />
           <Route path="/admission" element={<AdmissionForm />} />
+          <Route path="/teacher-enrollment" element={<TeacherEnrollment />} />
+          <Route path="/gallery" element={<Gallery />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Index />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

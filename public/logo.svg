@@ -1,0 +1,58 @@
+<svg width="200" height="240" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
+  <!-- Shield Background -->
+  <defs>
+    <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e40af;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Shield Border -->
+  <path d="M20 40 L100 20 L180 40 L170 200 L100 220 L30 200 Z" fill="url(#goldGradient)" stroke="#92400e" stroke-width="3"/>
+  
+  <!-- Shield Background -->
+  <path d="M25 45 L100 25 L175 45 L165 195 L100 215 L35 195 Z" fill="url(#shieldGradient)"/>
+  
+  <!-- Rehmani's Text -->
+  <text x="100" y="50" text-anchor="middle" fill="white" font-family="cursive, serif" font-size="16" font-weight="bold">Rehmani's</text>
+  
+  <!-- Lightbulb with Graduation Cap -->
+  <g transform="translate(100, 120)">
+    <!-- Lightbulb Base -->
+    <ellipse cx="0" cy="25" rx="8" ry="3" fill="white" opacity="0.8"/>
+    
+    <!-- Lightbulb Body -->
+    <path d="M-12 -15 Q-12 -25 0 -35 Q12 -25 12 -15 L8 15 Q8 20 0 25 Q-8 20 -8 15 Z" fill="white" opacity="0.9"/>
+    
+    <!-- Graduation Cap -->
+    <rect x="-15" y="-40" width="30" height="8" fill="white" opacity="0.9"/>
+    <rect x="-12" y="-45" width="24" height="5" fill="white" opacity="0.9"/>
+    <circle cx="-8" cy="-42" r="2" fill="white" opacity="0.9"/>
+    
+    <!-- Tassel -->
+    <path d="M-8 -42 Q-8 -50 -12 -55 Q-8 -50 -8 -42" stroke="white" stroke-width="1" fill="none" opacity="0.9"/>
+    
+    <!-- Pencil/Column inside lightbulb -->
+    <rect x="-2" y="-30" width="4" height="20" fill="white" opacity="0.8"/>
+    <rect x="-1" y="-32" width="2" height="2" fill="white" opacity="0.8"/>
+    
+    <!-- Stars -->
+    <g fill="white" opacity="0.8">
+      <path d="M-8 -20 L-7 -18 L-6 -20 L-7 -22 Z"/>
+      <path d="M8 -20 L7 -18 L6 -20 L7 -22 Z"/>
+      <path d="M0 -25 L1 -23 L2 -25 L1 -27 Z"/>
+      <path d="M-4 -15 L-3 -13 L-2 -15 L-3 -17 Z"/>
+      <path d="M4 -15 L3 -13 L2 -15 L3 -17 Z"/>
+    </g>
+  </g>
+  
+  <!-- IMPACT Text -->
+  <text x="100" y="180" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="24" font-weight="bold">IMPACT</text>
+  
+  <!-- CAMPUS Text -->
+  <text x="100" y="200" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">CAMPUS</text>
+</svg> 

@@ -159,12 +159,10 @@ const About = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl flex items-center justify-center animate-pulse-glow">
-                <span className="text-white font-bold text-xl">IS</span>
-              </div>
+              <img src="/logo.svg" alt="Rehmani's IMPACT CAMPUS" className="w-16 h-16" />
               <div>
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent">
-                  Impact School
+                  Rehmani's IMPACT CAMPUS
                 </h1>
               </div>
             </div>
@@ -172,8 +170,7 @@ const About = () => {
               <Link to="/" className="text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform">Home</Link>
               <Link to="/about" className="text-purple-300 font-medium">About</Link>
               <Link to="/courses" className="text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform">Courses</Link>
-              <Link to="/tutors" className="text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform">Tutors</Link>
-              <Link to="/notices" className="text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform">Notices</Link>
+              <Link to="/teacher-enrollment" className="text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform">Teacher Enrollment</Link>
             </nav>
             
             {/* Mobile menu button */}
@@ -235,22 +232,14 @@ const About = () => {
                 Courses
               </Link>
               <Link 
-                to="/tutors" 
+                to="/teacher-enrollment" 
                 onClick={closeMobileMenu}
                 className="text-2xl text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform"
                 style={{ animation: 'mobile-menu-item 0.4s ease-out forwards', animationDelay: '0.25s' }}
               >
-                Tutors
+                Teacher Enrollment
               </Link>
-              <Link 
-                to="/notices" 
-                onClick={closeMobileMenu}
-                className="text-2xl text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform"
-                style={{ animation: 'mobile-menu-item 0.4s ease-out forwards', animationDelay: '0.3s' }}
-              >
-                Notices
-              </Link>
-              <div className="pt-6" style={{ animation: 'mobile-menu-item 0.4s ease-out forwards', animationDelay: '0.35s' }}>
+              <div className="pt-6" style={{ animation: 'mobile-menu-item 0.4s ease-out forwards', animationDelay: '0.3s' }}>
                 <Button 
                   onClick={() => {
                     navigate('/admission');

@@ -421,12 +421,10 @@ const Landing = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl flex items-center justify-center animate-pulse-glow">
-                <span className="text-white font-bold text-xl">IS</span>
-              </div>
+              <img src="/logo.svg" alt="Rehmani's IMPACT CAMPUS" className="w-16 h-16" />
               <div>
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent">
-                  Impact School
+                  Rehmani's IMPACT CAMPUS
                 </h1>
               </div>
             </div>
@@ -434,8 +432,8 @@ const Landing = () => {
               <Link to="/" className="text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform">Home</Link>
               <Link to="/about" className="text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform">About</Link>
               <Link to="/courses" className="text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform">Courses</Link>
-              <Link to="/tutors" className="text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform">Tutors</Link>
-              <Link to="/notices" className="text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform">Notices</Link>
+              <Link to="/gallery" className="text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform">Gallery</Link>
+              <Link to="/teacher-enrollment" className="text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform">Teacher Enrollment</Link>
             </nav>
             
             {/* Mobile menu button */}
@@ -497,22 +495,22 @@ const Landing = () => {
                 Courses
               </Link>
               <Link 
-                to="/tutors" 
+                to="/gallery" 
                 onClick={closeMobileMenu}
                 className="text-2xl text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform mobile-menu-item"
                 style={{ animationDelay: '0.25s' }}
               >
-                Tutors
+                Gallery
               </Link>
               <Link 
-                to="/notices" 
+                to="/teacher-enrollment" 
                 onClick={closeMobileMenu}
                 className="text-2xl text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform mobile-menu-item"
                 style={{ animationDelay: '0.3s' }}
               >
-                Notices
+                Teacher Enrollment
               </Link>
-              <div className="pt-6 mobile-menu-item" style={{ animationDelay: '0.35s' }}>
+              <div className="pt-6 mobile-menu-item" style={{ animationDelay: '0.4s' }}>
                 <Button 
                   onClick={() => {
                     navigate('/admission');
@@ -536,14 +534,17 @@ const Landing = () => {
             <div className="animate-slide-up">
               <div className="mb-6">
                 <span className="inline-block px-4 py-2 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-full text-purple-300 text-sm font-medium border border-purple-500/30 animate-bounce-in">
-                  🚀 Next Generation Learning Platform
+                  🚀 Rehmani Educational & Charitable Trust's
                 </span>
               </div>
-                             <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-6 leading-tight animate-gradient">
-                Transform Education with Smart Technology
+              <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-6 leading-tight animate-gradient">
+                IMPACT ENGLISH MEDIUM SCHOOL & JUNIOR COLLEGE
               </h2>
-              <p className="text-lg text-gray-300 mb-8 max-w-lg leading-relaxed">
-                Unified platform connecting administrators, teachers, students, and parents. Streamline your educational institution with innovative tools.
+              <p className="text-lg text-gray-300 mb-4 max-w-lg leading-relaxed">
+                Shape Your Future with Quality Education & Expert Guidance!
+              </p>
+              <p className="text-md text-gray-400 mb-8 max-w-lg leading-relaxed">
+                At IMPACT CAMPUS, we don't just teach - we empower, inspire, and transform. We are committed to delivering value-based, concept-driven learning in a disciplined and nurturing environment.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
@@ -552,12 +553,12 @@ const Landing = () => {
                   className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-8 py-4 text-lg transition-all duration-300 hover:scale-105 animate-pulse-glow"
                 >
                   <Zap className="w-5 h-5 mr-2" />
-                Enroll Now
-              </Button>
+                  ADMISSION OPEN 2025
+                </Button>
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  onClick={() => document.getElementById('comprehensive-management')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => document.getElementById('why-choose-us')?.scrollIntoView({ behavior: 'smooth' })}
                   className="border-white/30 bg-transparent text-white hover:bg-white/10 hover:border-white/50 px-8 py-4 text-lg transition-all duration-300 hover:scale-105"
                 >
                   <Globe className="w-5 h-5 mr-2" />
@@ -596,58 +597,215 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* Enhanced 4 Ways Section */}
-      <section className="py-24 relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-pink-900/20 backdrop-blur-sm" />
-        
-        {/* Enhanced Decorative Elements */}
-        <div className="absolute left-20 top-20 w-32 h-32 opacity-20 parallax-element">
-          <div className="grid grid-cols-8 gap-2">
-            {Array.from({ length: 64 }).map((_, i) => (
-              <div key={i} className="w-2 h-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full animate-float" style={{ animationDelay: `${i * 0.1}s` }} />
-            ))}
-          </div>
-        </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 animate-slide-up">
-            <h3 className="text-5xl font-bold bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent mb-6">
-              4 Ways to ensure your satisfaction
-            </h3>
-            <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full" />
-          </div>
-          
-          {/* Enhanced Feature Icons */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 max-w-4xl mx-auto">
-            {[
-              { icon: Users, color: 'from-purple-500 to-pink-500', delay: '0.1s' },
-              { icon: Calendar, color: 'from-blue-500 to-cyan-500', delay: '0.2s' },
-              { icon: Shield, color: 'from-green-500 to-emerald-500', delay: '0.3s' },
-              { icon: FileText, color: 'from-orange-500 to-red-500', delay: '0.4s' }
-            ].map(({ icon: Icon, color, delay }, index) => (
-              <div key={index} className="text-center animate-bounce-in" style={{ animationDelay: delay }}>
-                <div className={`w-24 h-24 bg-gradient-to-r ${color} rounded-3xl flex items-center justify-center mx-auto mb-6 transition-all duration-300 hover:scale-110 hover:rotate-6 animate-pulse-glow`}>
-                  <Icon className="w-12 h-12 text-white" />
-            </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Enhanced Features Section */}
-      <section id="comprehensive-management" className="py-24 relative">
+
+
+      {/* Why Choose Us Section */}
+      <section className="py-24 relative" id="why-choose-us">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 animate-slide-up">
             <h3 className="text-5xl font-bold bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent mb-6">
-              Comprehensive School Management
+              WHY CHOOSE US?
             </h3>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Everything you need to manage your educational institution efficiently with cutting-edge technology
+              Pimpri Chinchwad's First Minority Jr. College with exceptional facilities and results
             </p>
           </div>
+          
+          {/* Taleem Bhi Tarbiyat Bhi Section */}
+          <div className="text-center mb-16 animate-slide-up">
+            <h4 className="text-4xl font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent mb-8">
+              TALEEM BHI, TARBIYAT BHI
+            </h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {[
+                {
+                  icon: Award,
+                  title: 'Munasib Fees mein Aala Taleem',
+                  description: 'Quality education at affordable fees, ensuring every child has access to excellent learning opportunities.',
+                  color: 'from-green-500 to-emerald-500'
+                },
+                {
+                  icon: Users,
+                  title: 'Waalidain ke saath Regular Rabta',
+                  description: 'Regular communication with parents to keep them informed about their child\'s progress and development.',
+                  color: 'from-blue-500 to-cyan-500'
+                },
+                {
+                  icon: Heart,
+                  title: 'Taleem ke saath-saath Sports aur Hunar ki Tarbiyat',
+                  description: 'Comprehensive development through education, sports, and skill development programs.',
+                  color: 'from-orange-500 to-red-500'
+                },
+                {
+                  icon: Shield,
+                  title: 'Akhlaaq Sazi aur Character Building',
+                  description: 'Focus on moral values and character building alongside academic excellence.',
+                  color: 'from-purple-500 to-pink-500'
+                }
+              ].map((feature, index) => {
+                const Icon = feature.icon;
+                return (
+                  <Card 
+                    key={index} 
+                    className="!bg-transparent !bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-105 hover:-translate-y-2 animate-bounce-in group shadow-lg shadow-black/20"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <CardHeader className="text-center">
+                      <div className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:rotate-12 group-hover:scale-110`}>
+                        <Icon className="w-8 h-8 text-white" />
+                      </div>
+                      <CardTitle className="text-xl text-white group-hover:text-purple-300 transition-colors">{feature.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <CardDescription className="text-gray-300 text-center group-hover:text-gray-200 transition-colors">
+                        {feature.description}
+                      </CardDescription>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+          </div>
+          
+          {/* Why Choose Us Bullet Points */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/20">
+              <h4 className="text-2xl font-bold text-red-400 mb-6">Key Features</h4>
+              <ul className="space-y-4">
+                {[
+                  'Pimpri Chinchwad\'s First Minority Jr. College',
+                  'Interactive Smart Classrooms',
+                  'Regular Doubt-solving and Personal Mentoring',
+                  'Emphasis on Moral Values and Holistic Development',
+                  'State-of-the-art Infrastructure',
+                  'NEET Exam Preparation With Syllabus',
+                  '100% Board Exam Result Track Record',
+                  'Quality Education in a Safe Environment'
+                ].map((feature, index) => (
+                  <li key={index} className="flex items-start space-x-3">
+                    <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">
+                      <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <span className="text-gray-300">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            {/* Faculty Section */}
+            <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/20">
+              <h4 className="text-2xl font-bold text-purple-400 mb-6">Guided by an Exceptional Faculty Team</h4>
+              <div className="space-y-4 max-h-96 overflow-y-auto">
+                {[
+                  {
+                    name: 'MR. BAGBAN MOHAMMED NAEEM',
+                    role: 'Chairman',
+                    qualification: 'M.Sc (Maths), B.Ed - University Topper',
+                    experience: '18 Years'
+                  },
+                  {
+                    name: 'MISS. BEDREKAR FIRDOUS',
+                    role: 'Principal',
+                    qualification: 'M.A, B.Ed',
+                    experience: '25 Years'
+                  },
+                  {
+                    name: 'MISS. SHAIKH NIDA',
+                    role: 'Faculty',
+                    qualification: 'M.Sc (Computer Science)',
+                    experience: '06 Years'
+                  },
+                  {
+                    name: 'MISS. KHAN SHAFEEQUNNISA',
+                    role: 'Faculty',
+                    qualification: 'M.Sc, B.Ed',
+                    experience: '15 Years'
+                  },
+                  {
+                    name: 'MISS. ZULEKHA SAMEER KHAN',
+                    role: 'Faculty',
+                    qualification: 'M.A., B.Ed',
+                    experience: '09 Years'
+                  },
+                  {
+                    name: 'MISS. SAYYED SHABANAM SHABBIR',
+                    role: 'Faculty',
+                    qualification: 'M.Sc (Physics), B.Ed - University Topper',
+                    experience: '05 Years'
+                  },
+                  {
+                    name: 'DR. SHAIKH SHAMSHAD',
+                    role: 'Faculty',
+                    qualification: 'BHMS, PEDEMS',
+                    experience: '11 Years'
+                  },
+                  {
+                    name: 'MISS. SHAIKH MARIYAM',
+                    role: 'Faculty',
+                    qualification: 'M.Com, MBA, B.Ed - (100/100 in Accounts)',
+                    experience: '13 Years'
+                  }
+                ].map((faculty, index) => (
+                  <div key={index} className="bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-lg p-4 border border-purple-400/30">
+                    <div className="flex justify-between items-start">
+                      <div className="flex-1">
+                        <h5 className="font-bold text-white text-sm">{faculty.name}</h5>
+                        <p className="text-purple-300 text-xs">{faculty.role}</p>
+                        <p className="text-gray-300 text-xs mt-1">{faculty.qualification}</p>
+                      </div>
+                      <div className="bg-purple-500 text-white text-xs px-2 py-1 rounded">
+                        {faculty.experience}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => {
+            {[
+              {
+                icon: Award,
+                title: 'Academic Excellence',
+                description: 'Consistently high academic performance with innovative teaching methodologies and personalized learning approaches.',
+                color: 'from-purple-500 to-pink-500'
+              },
+              {
+                icon: Users,
+                title: 'Expert Faculty',
+                description: 'Highly qualified and experienced teachers dedicated to nurturing each student\'s potential and fostering a love for learning.',
+                color: 'from-blue-500 to-cyan-500'
+              },
+              {
+                icon: Shield,
+                title: 'Safe Environment',
+                description: 'Secure campus with modern facilities, ensuring a safe and conducive learning environment for all students.',
+                color: 'from-green-500 to-emerald-500'
+              },
+              {
+                icon: Globe,
+                title: 'Global Perspective',
+                description: 'International curriculum standards with exposure to diverse cultures and global learning opportunities.',
+                color: 'from-orange-500 to-red-500'
+              },
+              {
+                icon: Heart,
+                title: 'Holistic Development',
+                description: 'Focus on academic, physical, emotional, and social development through comprehensive programs and activities.',
+                color: 'from-indigo-500 to-purple-500'
+              },
+              {
+                icon: Zap,
+                title: 'Technology Integration',
+                description: 'State-of-the-art technology integration in classrooms for enhanced learning experiences and digital literacy.',
+                color: 'from-pink-500 to-rose-500'
+              }
+            ].map((feature, index) => {
               const Icon = feature.icon;
               return (
                 <Card 
@@ -670,31 +828,236 @@ const Landing = () => {
               );
             })}
           </div>
+          
+          {/* Stats Section at the end of Why Choose Us */}
+          <div className="mt-16 pt-16 border-t border-white/20">
+            <div className="text-center mb-12">
+              <h4 className="text-3xl font-bold bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent mb-4">
+                Our Impact in Numbers
+              </h4>
+              <p className="text-lg text-gray-300">
+                Trusted by thousands of students and parents
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+              {[
+                { value: '1,247', label: 'Active Students', icon: Users },
+                { value: '78', label: 'Teaching Staff', icon: Award },
+                { value: '24', label: 'Classes', icon: Calendar },
+                { value: '95%', label: 'Satisfaction Rate', icon: TrendingUp }
+              ].map((stat, index) => {
+                const Icon = stat.icon;
+                return (
+                  <div key={index} className="animate-bounce-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                    <div className="bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105">
+                      <Icon className="w-12 h-12 text-purple-400 mx-auto mb-4" />
+                      <div className="text-5xl font-bold text-white mb-2 bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent">{stat.value}</div>
+                      <div className="text-purple-200">{stat.label}</div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Enhanced Stats Section */}
+      {/* YouTube Videos Section */}
       <section className="py-24 relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/40 to-pink-900/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-pink-900/20 backdrop-blur-sm" />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+          <div className="text-center mb-16 animate-slide-up">
+            <h3 className="text-5xl font-bold bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent mb-6">
+              Watch Our School in Action
+            </h3>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+              Explore our campus, meet our community, and see the Impact School difference
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { value: '1,247', label: 'Active Students', icon: Users },
-              { value: '78', label: 'Teaching Staff', icon: Award },
-              { value: '24', label: 'Classes', icon: Calendar },
-              { value: '95%', label: 'Satisfaction Rate', icon: TrendingUp }
-            ].map((stat, index) => {
-              const Icon = stat.icon;
-              return (
-                <div key={index} className="animate-bounce-in" style={{ animationDelay: `${index * 0.1}s` }}>
-                  <div className="bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105">
-                    <Icon className="w-12 h-12 text-purple-400 mx-auto mb-4" />
-                    <div className="text-5xl font-bold text-white mb-2 bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent">{stat.value}</div>
-                    <div className="text-purple-200">{stat.label}</div>
-            </div>
-            </div>
-              );
-            })}
+              {
+                title: 'Campus Tour 2024',
+                description: 'Take a virtual tour of our state-of-the-art facilities and beautiful campus environment.',
+                thumbnail: 'https://images.unsplash.com/photo-1523050854058-8df90110c9e1?w=400&h=250&fit=crop',
+                videoId: 'dQw4w9WgXcQ',
+                duration: '5:32'
+              },
+              {
+                title: 'Student Life at Impact',
+                description: 'Discover the vibrant student life, activities, and experiences that make our school special.',
+                thumbnail: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=250&fit=crop',
+                videoId: '9bZkp7q19f0',
+                duration: '8:15'
+              },
+              {
+                title: 'Academic Excellence',
+                description: 'Learn about our innovative teaching methods and academic achievements.',
+                thumbnail: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=250&fit=crop',
+                videoId: 'jNQXAC9IVRw',
+                duration: '6:48'
+              },
+              {
+                title: 'Sports Function 2024',
+                description: 'Highlights from our annual sports day featuring athletic competitions and team spirit.',
+                thumbnail: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=250&fit=crop',
+                videoId: 'kJQP7kiw5Fk',
+                duration: '7:45'
+              },
+              {
+                title: 'Annual Function - Pratibha 2024',
+                description: 'Celebrating talent and creativity at our annual cultural festival with performances and awards.',
+                thumbnail: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=250&fit=crop',
+                videoId: 'y6120QOlsfU',
+                duration: '12:30'
+              },
+              {
+                title: 'Parent Testimonials',
+                description: 'Hear from our satisfied parents about their experience with Impact School.',
+                thumbnail: 'https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=400&h=250&fit=crop',
+                videoId: 'ZZ5LpwO-An4',
+                duration: '7:30'
+              },
+              {
+                title: 'Sports & Activities',
+                description: 'Explore our comprehensive sports programs and extracurricular activities.',
+                thumbnail: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=250&fit=crop',
+                videoId: 'kJQP7kiw5Fk',
+                duration: '4:22'
+              },
+              {
+                title: 'Cultural Fest Highlights',
+                description: 'Relive the magic of our annual cultural festival and student performances.',
+                thumbnail: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=250&fit=crop',
+                videoId: 'y6120QOlsfU',
+                duration: '9:15'
+              },
+              {
+                title: 'Annual Sports Meet',
+                description: 'Complete coverage of our annual sports meet with competitions and celebrations.',
+                thumbnail: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=250&fit=crop',
+                videoId: 'dQw4w9WgXcQ',
+                duration: '15:20'
+              }
+            ].map((video, index) => (
+              <Card 
+                key={index} 
+                className="!bg-transparent !bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-105 hover:-translate-y-2 animate-bounce-in group shadow-lg shadow-black/20 cursor-pointer"
+                style={{ animationDelay: `${index * 0.1}s` }}
+                onClick={() => window.open(`https://www.youtube.com/watch?v=${video.videoId}`, '_blank')}
+              >
+                <div className="relative overflow-hidden rounded-t-lg">
+                  <img 
+                    src={video.thumbnail} 
+                    alt={video.title}
+                    className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="absolute bottom-2 right-2 bg-black/80 text-white text-sm px-2 py-1 rounded">
+                    {video.duration}
+                  </div>
+                </div>
+                <CardHeader>
+                  <CardTitle className="text-xl text-white group-hover:text-purple-300 transition-colors">{video.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-gray-300 group-hover:text-gray-200 transition-colors">
+                    {video.description}
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Charity Members Section */}
+      <section className="py-24 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 animate-slide-up">
+            <h3 className="text-5xl font-bold bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent mb-6">
+              Our Charity Partners
+            </h3>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+              Working together with charitable organizations to make education accessible to all
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                name: 'Education for All Foundation',
+                logo: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=200&h=200&fit=crop&crop=center',
+                description: 'Providing scholarships and educational resources to underprivileged students.',
+                focus: 'Scholarships',
+                year: '2020'
+              },
+              {
+                name: 'Bright Future Initiative',
+                logo: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=200&h=200&fit=crop&crop=center',
+                description: 'Supporting STEM education and technology access for rural schools.',
+                focus: 'STEM Education',
+                year: '2019'
+              },
+              {
+                name: 'Community Learning Network',
+                logo: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=200&h=200&fit=crop&crop=center',
+                description: 'Building community learning centers and adult education programs.',
+                focus: 'Community Centers',
+                year: '2021'
+              },
+              {
+                name: 'Digital Literacy Trust',
+                logo: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=200&h=200&fit=crop&crop=center',
+                description: 'Promoting digital literacy and computer education in schools.',
+                focus: 'Digital Literacy',
+                year: '2022'
+              }
+            ].map((partner, index) => (
+              <Card 
+                key={index} 
+                className="!bg-transparent !bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-105 hover:-translate-y-2 animate-bounce-in group shadow-lg shadow-black/20"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <CardHeader className="text-center">
+                  <div className="relative w-24 h-24 mx-auto mb-6">
+                    <img 
+                      src={partner.logo} 
+                      alt={partner.name}
+                      className="w-24 h-24 rounded-full object-cover transition-transform duration-700 group-hover:scale-110 border-4 border-white/20"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 to-transparent rounded-full" />
+                  </div>
+                  <CardTitle className="text-xl text-white group-hover:text-purple-300 transition-colors">{partner.name}</CardTitle>
+                  <Badge variant="secondary" className="bg-purple-600/20 text-purple-300 border-purple-400/50">
+                    {partner.focus}
+                  </Badge>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <CardDescription className="text-gray-300 group-hover:text-gray-200 transition-colors mb-4">
+                    {partner.description}
+                  </CardDescription>
+                  <div className="text-sm text-purple-300">
+                    Partner since {partner.year}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <Button 
+              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-8 py-4 text-lg transition-all duration-300 hover:scale-105 animate-pulse-glow"
+              onClick={() => window.open('mailto:partnerships@impactschool.edu', '_blank')}
+            >
+              <Heart className="w-5 h-5 mr-2" />
+              Become a Partner
+            </Button>
           </div>
         </div>
       </section>
@@ -705,10 +1068,8 @@ const Landing = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div className="animate-slide-up">
               <div className="flex items-center space-x-3 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl flex items-center justify-center animate-pulse-glow">
-                  <span className="text-white font-bold text-xl">IS</span>
-                </div>
-                <span className="text-2xl font-bold bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent">Impact School</span>
+                <img src="/logo.svg" alt="Rehmani's IMPACT CAMPUS" className="w-16 h-16" />
+                <span className="text-2xl font-bold bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent">Rehmani's IMPACT CAMPUS</span>
               </div>
               <p className="text-gray-300 leading-relaxed">
                 Transforming education through technology and innovation. Building the future of learning, one student at a time.
@@ -719,19 +1080,25 @@ const Landing = () => {
               <ul className="space-y-3 text-gray-300">
                 <li><Link to="/about" className="hover:text-purple-300 transition-colors duration-300 flex items-center group"><Star className="w-4 h-4 mr-2 group-hover:text-yellow-400" />About Us</Link></li>
                 <li><Link to="/courses" className="hover:text-purple-300 transition-colors duration-300 flex items-center group"><Star className="w-4 h-4 mr-2 group-hover:text-yellow-400" />Courses</Link></li>
-                <li><Link to="/tutors" className="hover:text-purple-300 transition-colors duration-300 flex items-center group"><Star className="w-4 h-4 mr-2 group-hover:text-yellow-400" />Tutors</Link></li>
-                <li><Link to="/notices" className="hover:text-purple-300 transition-colors duration-300 flex items-center group"><Star className="w-4 h-4 mr-2 group-hover:text-yellow-400" />Notices</Link></li>
+                <li><Link to="/teacher-enrollment" className="hover:text-purple-300 transition-colors duration-300 flex items-center group"><Star className="w-4 h-4 mr-2 group-hover:text-yellow-400" />Teacher Enrollment</Link></li>
+                <li><Link to="/admission" className="hover:text-purple-300 transition-colors duration-300 flex items-center group"><Star className="w-4 h-4 mr-2 group-hover:text-yellow-400" />Student Enrollment</Link></li>
               </ul>
             </div>
             <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
               <h4 className="text-2xl font-semibold mb-6 text-white">Contact Info</h4>
               <div className="text-gray-300 space-y-3">
-                <p className="flex items-start"><Globe className="w-4 h-4 mr-2 text-purple-400 mt-1" />Near Alimuddin associate, Pawar Vasti Rd, behind Usman Masjid, Pawar Vasti, Kudalwadi, Chikhali, Pimpri-Chinchwad, Maharashtra 411062</p>
-                <a href="tel:09272147049" className="flex items-center hover:text-purple-300 transition-colors duration-300 cursor-pointer">
+                <p className="flex items-start"><Globe className="w-4 h-4 mr-2 text-purple-400 mt-1" />Pavar Vasti, Behind Usman Masjid, Kudalwadi, Pimpri-Chinchwad, Pune - 411062</p>
+                <a href="tel:+919272147049" className="flex items-center hover:text-purple-300 transition-colors duration-300 cursor-pointer">
                   <Phone className="w-4 h-4 mr-2 text-purple-400" />
-                  Call: 092721 47049
+                  Call: +91-9272 147 049
                 </a>
-                <p className="flex items-center"><Globe className="w-4 h-4 mr-2 text-purple-400" />Email: info@impactschool.edu</p>
+                <p className="flex items-center"><Globe className="w-4 h-4 mr-2 text-purple-400" />Email: impactschool466@gmail.com</p>
+                <div className="mt-4 p-4 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-lg border border-purple-400/30">
+                  <h5 className="font-bold text-purple-300 mb-2">Admission Form Available</h5>
+                  <p className="text-sm text-gray-300 mb-2">📍 In the School Office</p>
+                  <p className="text-sm text-gray-300">🕐 Monday to Saturday: 11:00 AM to 3:00 PM</p>
+                  <p className="text-sm text-gray-300 mt-2">📚 Classes: 11th & 12th Science & Commerce</p>
+                </div>
               </div>
             </div>
           </div>
@@ -761,7 +1128,7 @@ const Landing = () => {
           </div>
           
           <div className="border-t border-white/20 pt-8 text-center">
-            <p className="text-gray-400">© 2024 Impact School. All rights reserved. Made with ❤️ for education.</p>
+            <p className="text-gray-400">© 2024 Rehmani's IMPACT CAMPUS. All rights reserved. Made with ❤️ for education.</p>
           </div>
         </div>
       </footer>
