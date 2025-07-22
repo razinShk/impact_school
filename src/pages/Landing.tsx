@@ -2,7 +2,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Star, Globe, ArrowRight, BookOpen, Users, Trophy, Award, GraduationCap, TrendingUp, Zap, Target, Heart, Phone, Calendar, FileText, MessageSquare, Shield, Menu, X } from 'lucide-react';
+import { Star, Globe, ArrowRight, BookOpen, Users, Trophy, Award, GraduationCap, TrendingUp, Zap, Target, Heart, Phone, Calendar, FileText, MessageSquare, Shield, Menu, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
@@ -421,7 +421,7 @@ const Landing = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-3">
-              <img src="/logo.svg" alt="Rehmani's IMPACT CAMPUS" className="w-16 h-16" />
+              <img src="/impact_logo-removebg-preview.png" alt="Rehmani's IMPACT CAMPUS" className="w-10 h-12 rounded-lg" />
               <div>
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent">
                   Rehmani's IMPACT CAMPUS
@@ -879,90 +879,60 @@ const Landing = () => {
               {
                 title: 'Campus Tour 2024',
                 description: 'Take a virtual tour of our state-of-the-art facilities and beautiful campus environment.',
-                thumbnail: 'https://images.unsplash.com/photo-1523050854058-8df90110c9e1?w=400&h=250&fit=crop',
-                videoId: 'dQw4w9WgXcQ',
+                videoId: 'CcTMu0ZxD9Y',
+                embedUrl: 'https://www.youtube.com/embed/CcTMu0ZxD9Y',
                 duration: '5:32'
               },
               {
                 title: 'Student Life at Impact',
                 description: 'Discover the vibrant student life, activities, and experiences that make our school special.',
-                thumbnail: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=250&fit=crop',
-                videoId: '9bZkp7q19f0',
+                videoId: '3LV1g-oXwz4',
+                embedUrl: 'https://www.youtube.com/embed/3LV1g-oXwz4?si=eoMT8RQVJlrvvWzV',
                 duration: '8:15'
               },
               {
                 title: 'Academic Excellence',
                 description: 'Learn about our innovative teaching methods and academic achievements.',
-                thumbnail: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=250&fit=crop',
-                videoId: 'jNQXAC9IVRw',
+                videoId: 'b1F2-_sgIl0',
+                embedUrl: 'https://www.youtube.com/embed/b1F2-_sgIl0?si=i6d9WYyvXSYoi9l_',
                 duration: '6:48'
               },
               {
                 title: 'Sports Function 2024',
-                description: 'Highlights from our annual sports day featuring athletic competitions and team spirit.',
-                thumbnail: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=250&fit=crop',
-                videoId: 'kJQP7kiw5Fk',
+                description: 'Experience the energy and excitement of our annual sports day celebrations.',
+                videoId: 'W82WNPexRhI',
+                embedUrl: 'https://www.youtube.com/embed/W82WNPexRhI?si=fWmi92L-R1VFDpDH',
                 duration: '7:45'
               },
               {
                 title: 'Annual Function - Pratibha 2024',
-                description: 'Celebrating talent and creativity at our annual cultural festival with performances and awards.',
-                thumbnail: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=250&fit=crop',
-                videoId: 'y6120QOlsfU',
+                description: 'Witness the spectacular performances and celebrations at our annual cultural event.',
+                videoId: 'OksQti1TxNk',
+                embedUrl: 'https://www.youtube.com/embed/OksQti1TxNk?si=Mo4UvmYMffjOCOeE',
                 duration: '12:30'
               },
               {
                 title: 'Parent Testimonials',
-                description: 'Hear from our satisfied parents about their experience with Impact School.',
-                thumbnail: 'https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=400&h=250&fit=crop',
-                videoId: 'ZZ5LpwO-An4',
+                description: 'Hear what our parents have to say about their experience with Impact School.',
+                videoId: '4n9TptEaNpY',
+                embedUrl: 'https://www.youtube.com/embed/4n9TptEaNpY?si=4KzuQXIRmctPLQsr',
                 duration: '7:30'
-              },
-              {
-                title: 'Sports & Activities',
-                description: 'Explore our comprehensive sports programs and extracurricular activities.',
-                thumbnail: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=250&fit=crop',
-                videoId: 'kJQP7kiw5Fk',
-                duration: '4:22'
-              },
-              {
-                title: 'Cultural Fest Highlights',
-                description: 'Relive the magic of our annual cultural festival and student performances.',
-                thumbnail: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=250&fit=crop',
-                videoId: 'y6120QOlsfU',
-                duration: '9:15'
-              },
-              {
-                title: 'Annual Sports Meet',
-                description: 'Complete coverage of our annual sports meet with competitions and celebrations.',
-                thumbnail: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=250&fit=crop',
-                videoId: 'dQw4w9WgXcQ',
-                duration: '15:20'
               }
             ].map((video, index) => (
               <Card 
                 key={index} 
-                className="!bg-transparent !bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-105 hover:-translate-y-2 animate-bounce-in group shadow-lg shadow-black/20 cursor-pointer"
+                className="!bg-transparent !bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-105 hover:-translate-y-2 animate-bounce-in group shadow-lg shadow-black/20"
                 style={{ animationDelay: `${index * 0.1}s` }}
-                onClick={() => window.open(`https://www.youtube.com/watch?v=${video.videoId}`, '_blank')}
               >
-                <div className="relative overflow-hidden rounded-t-lg">
-                  <img 
-                    src={video.thumbnail} 
-                    alt={video.title}
-                    className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
+                <div className="relative overflow-hidden rounded-t-lg aspect-video">
+                  <iframe 
+                    src={video.embedUrl}
+                    title={video.title}
+                    className="absolute inset-0 w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    referrerPolicy="strict-origin-when-cross-origin"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z"/>
-                      </svg>
-                    </div>
-                  </div>
-                  <div className="absolute bottom-2 right-2 bg-black/80 text-white text-sm px-2 py-1 rounded">
-                    {video.duration}
-                  </div>
                 </div>
                 <CardHeader>
                   <CardTitle className="text-xl text-white group-hover:text-purple-300 transition-colors">{video.title}</CardTitle>
@@ -978,88 +948,142 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* Charity Members Section */}
-      <section className="py-24 relative">
+
+
+      {/* Faculty Section */}
+      <section className="py-16 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 animate-slide-up">
-            <h3 className="text-5xl font-bold bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent mb-6">
-              Our Charity Partners
+          <div className="text-center mb-12">
+            <h3 className="text-4xl font-bold bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent mb-4">
+              Our Distinguished Faculty
             </h3>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Working together with charitable organizations to make education accessible to all
+            <p className="text-lg text-gray-300">
+              Learn from the best minds in education
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                name: 'Education for All Foundation',
-                logo: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=200&h=200&fit=crop&crop=center',
-                description: 'Providing scholarships and educational resources to underprivileged students.',
-                focus: 'Scholarships',
-                year: '2020'
-              },
-              {
-                name: 'Bright Future Initiative',
-                logo: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=200&h=200&fit=crop&crop=center',
-                description: 'Supporting STEM education and technology access for rural schools.',
-                focus: 'STEM Education',
-                year: '2019'
-              },
-              {
-                name: 'Community Learning Network',
-                logo: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=200&h=200&fit=crop&crop=center',
-                description: 'Building community learning centers and adult education programs.',
-                focus: 'Community Centers',
-                year: '2021'
-              },
-              {
-                name: 'Digital Literacy Trust',
-                logo: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=200&h=200&fit=crop&crop=center',
-                description: 'Promoting digital literacy and computer education in schools.',
-                focus: 'Digital Literacy',
-                year: '2022'
-              }
-            ].map((partner, index) => (
-              <Card 
+
+          {/* Horizontal Scrolling Container */}
+          <div className="relative group">
+            {/* Scroll Buttons */}
+            <button 
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/40 hover:bg-black/60 text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -translate-x-4 group-hover:translate-x-0"
+              onClick={() => {
+                const container = document.getElementById('faculty-container');
+                if (container) {
+                  container.scrollBy({ left: -300, behavior: 'smooth' });
+                }
+              }}
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            
+            <button 
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/40 hover:bg-black/60 text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-x-4 group-hover:translate-x-0"
+              onClick={() => {
+                const container = document.getElementById('faculty-container');
+                if (container) {
+                  container.scrollBy({ left: 300, behavior: 'smooth' });
+                }
+              }}
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+
+            {/* Cards Container */}
+            <div 
+              id="faculty-container"
+              className="flex overflow-x-auto gap-6 pb-6 snap-x snap-mandatory hide-scrollbar"
+              style={{
+                scrollbarWidth: 'none',
+                msOverflowStyle: 'none',
+                WebkitOverflowScrolling: 'touch'
+              }}
+            >
+              {/* Faculty Cards */}
+              {[
+                {
+                  name: "Bagban Mohammad Naeem Mohammad Haneef",
+                  qualification: "MSC (Math), B.Ed",
+                  achievement: "University Topper",
+                  image: "/placeholder.svg" // Replace with actual image
+                },
+                {
+                  name: "Mohd Nizamuddin",
+                  qualification: "MCA",
+                  image: "/placeholder.svg" // Replace with actual image
+                },
+                {
+                  name: "Muzammil Nisar Inamdar",
+                  qualification: "M-Tech (Mechanical)",
+                  image: "/placeholder.svg" // Replace with actual image
+                },
+                {
+                  name: "Sarvarpasha Satakhed",
+                  qualification: "MCA",
+                  image: "/placeholder.svg" // Replace with actual image
+                },
+                {
+                  name: "Gudusab Sharfoddin Chowdri",
+                  qualification: "DTDM (Diploma in Tool & Die making)",
+                  image: "/placeholder.svg" // Replace with actual image
+                },
+                {
+                  name: "Mustafa Mujawar",
+                  qualification: "B.E. E&TC",
+                  image: "/placeholder.svg" // Replace with actual image
+                },
+                {
+                  name: "Alim Ahemed Shaikh",
+                  qualification: "BSc (Electronics and Computer Maintenance)",
+                  image: "/placeholder.svg" // Replace with actual image
+                }
+              ].map((faculty, index) => (
+                <div 
                 key={index} 
-                className="!bg-transparent !bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-105 hover:-translate-y-2 animate-bounce-in group shadow-lg shadow-black/20"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <CardHeader className="text-center">
-                  <div className="relative w-24 h-24 mx-auto mb-6">
-                    <img 
-                      src={partner.logo} 
-                      alt={partner.name}
-                      className="w-24 h-24 rounded-full object-cover transition-transform duration-700 group-hover:scale-110 border-4 border-white/20"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 to-transparent rounded-full" />
+                  className="flex-none w-72 snap-center"
+                >
+                  <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md rounded-2xl border border-white/20 p-6 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:-translate-y-2 group">
+                    {/* Profile Image */}
+                    <div className="relative w-32 h-32 mx-auto mb-6">
+                      <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-pink-600/20 rounded-full animate-pulse" />
+                      <img 
+                        src={faculty.image} 
+                        alt={faculty.name}
+                        className="w-full h-full object-cover rounded-full border-4 border-white/20 group-hover:border-white/40 transition-all duration-300"
+                      />
                   </div>
-                  <CardTitle className="text-xl text-white group-hover:text-purple-300 transition-colors">{partner.name}</CardTitle>
-                  <Badge variant="secondary" className="bg-purple-600/20 text-purple-300 border-purple-400/50">
-                    {partner.focus}
-                  </Badge>
-                </CardHeader>
-                <CardContent className="text-center">
-                  <CardDescription className="text-gray-300 group-hover:text-gray-200 transition-colors mb-4">
-                    {partner.description}
-                  </CardDescription>
-                  <div className="text-sm text-purple-300">
-                    Partner since {partner.year}
+
+                    {/* Faculty Info */}
+                    <div className="text-center">
+                      <h4 className="text-xl font-semibold text-white mb-2 line-clamp-2">
+                        {faculty.name}
+                      </h4>
+                      <p className="text-purple-300 text-sm mb-2">
+                        {faculty.qualification}
+                      </p>
+                      {faculty.achievement && (
+                        <p className="text-yellow-400 text-xs">
+                          {faculty.achievement}
+                        </p>
+                      )}
                   </div>
-                </CardContent>
-              </Card>
+                  </div>
+                </div>
             ))}
           </div>
-          <div className="text-center mt-12">
-            <Button 
-              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-8 py-4 text-lg transition-all duration-300 hover:scale-105 animate-pulse-glow"
-              onClick={() => window.open('mailto:partnerships@impactschool.edu', '_blank')}
-            >
-              <Heart className="w-5 h-5 mr-2" />
-              Become a Partner
-            </Button>
           </div>
         </div>
+
+        {/* Add custom styles for hiding scrollbar */}
+        <style>{`
+          .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+          }
+          .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+          }
+        `}</style>
       </section>
 
       {/* Enhanced Footer */}
@@ -1068,7 +1092,7 @@ const Landing = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div className="animate-slide-up">
               <div className="flex items-center space-x-3 mb-6">
-                <img src="/logo.svg" alt="Rehmani's IMPACT CAMPUS" className="w-16 h-16" />
+                <img src="/impact_logo-removebg-preview.png" alt="Rehmani's IMPACT CAMPUS" className="w-14 h-16 rounded-lg" />
                 <span className="text-2xl font-bold bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent">Rehmani's IMPACT CAMPUS</span>
               </div>
               <p className="text-gray-300 leading-relaxed">
@@ -1128,7 +1152,7 @@ const Landing = () => {
           </div>
           
           <div className="border-t border-white/20 pt-8 text-center">
-            <p className="text-gray-400">© 2024 Rehmani's IMPACT CAMPUS. All rights reserved. Made with ❤️ for education.</p>
+            <p className="text-gray-400">© 2024 Rehmani's IMPACT CAMPUS. All rights reserved. Made by Razin for education.</p>
           </div>
         </div>
       </footer>

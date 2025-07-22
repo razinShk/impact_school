@@ -519,13 +519,13 @@ const Gallery = () => {
 
   const scrollToSection = (index: number) => {
     if (index >= 0 && index < filteredGalleryData.length) {
-      const container = sectionsRef.current;
-      if (container) {
-        const targetScroll = index * container.clientHeight;
-        container.scrollTo({
-          top: targetScroll,
-          behavior: 'smooth'
-        });
+    const container = sectionsRef.current;
+    if (container) {
+      const targetScroll = index * container.clientHeight;
+      container.scrollTo({
+        top: targetScroll,
+        behavior: 'smooth'
+      });
       }
     }
   };
@@ -559,7 +559,7 @@ const Gallery = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-3">
-              <img src="/logo.svg" alt="Rehmani's IMPACT CAMPUS" className="w-16 h-16" />
+              <img src="/impact_logo-removebg-preview.png" alt="Rehmani's IMPACT CAMPUS" className="w-16 h-16 rounded-lg" />
               <div>
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent">
                   Rehmani's IMPACT CAMPUS
@@ -879,7 +879,7 @@ const Gallery = () => {
           onClick={() => {
             const prevSection = currentSection - 1;
             if (prevSection >= 0) {
-              scrollToSection(prevSection);
+            scrollToSection(prevSection);
             }
           }}
           disabled={currentSection === 0}
@@ -896,7 +896,7 @@ const Gallery = () => {
           onClick={() => {
             const nextSection = currentSection + 1;
             if (nextSection < filteredGalleryData.length) {
-              scrollToSection(nextSection);
+            scrollToSection(nextSection);
             }
           }}
           disabled={currentSection === filteredGalleryData.length - 1}
@@ -910,7 +910,7 @@ const Gallery = () => {
         <div className="container mx-auto px-8 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-white text-sm">
-              LAUNCHING SUMMER 2025
+              Admission Open 2025
             </div>
             
             <div className="flex items-center gap-4">

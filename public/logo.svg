@@ -1,58 +1,36 @@
-<svg width="200" height="240" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
-  <!-- Shield Background -->
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
   <defs>
-    <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#1e40af;stop-opacity:1" />
-    </linearGradient>
-    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
-    </linearGradient>
+    <style>
+      .shield { fill: #4A5D94; }
+      .border { fill: #D4AF37; }
+      .text, .icon { fill: #FFFFFF; }
+    </style>
   </defs>
   
-  <!-- Shield Border -->
-  <path d="M20 40 L100 20 L180 40 L170 200 L100 220 L30 200 Z" fill="url(#goldGradient)" stroke="#92400e" stroke-width="3"/>
+  <!-- Border -->
+  <path class="border" d="M250 10 L450 100 L450 300 Q450 450 250 490 Q50 450 50 300 L50 100 Z"/>
   
   <!-- Shield Background -->
-  <path d="M25 45 L100 25 L175 45 L165 195 L100 215 L35 195 Z" fill="url(#shieldGradient)"/>
+  <path class="shield" d="M250 30 L430 110 L430 290 Q430 420 250 460 Q70 420 70 290 L70 110 Z"/>
   
-  <!-- Rehmani's Text -->
-  <text x="100" y="50" text-anchor="middle" fill="white" font-family="cursive, serif" font-size="16" font-weight="bold">Rehmani's</text>
-  
-  <!-- Lightbulb with Graduation Cap -->
-  <g transform="translate(100, 120)">
-    <!-- Lightbulb Base -->
-    <ellipse cx="0" cy="25" rx="8" ry="3" fill="white" opacity="0.8"/>
-    
-    <!-- Lightbulb Body -->
-    <path d="M-12 -15 Q-12 -25 0 -35 Q12 -25 12 -15 L8 15 Q8 20 0 25 Q-8 20 -8 15 Z" fill="white" opacity="0.9"/>
-    
-    <!-- Graduation Cap -->
-    <rect x="-15" y="-40" width="30" height="8" fill="white" opacity="0.9"/>
-    <rect x="-12" y="-45" width="24" height="5" fill="white" opacity="0.9"/>
-    <circle cx="-8" cy="-42" r="2" fill="white" opacity="0.9"/>
-    
-    <!-- Tassel -->
-    <path d="M-8 -42 Q-8 -50 -12 -55 Q-8 -50 -8 -42" stroke="white" stroke-width="1" fill="none" opacity="0.9"/>
-    
-    <!-- Pencil/Column inside lightbulb -->
-    <rect x="-2" y="-30" width="4" height="20" fill="white" opacity="0.8"/>
-    <rect x="-1" y="-32" width="2" height="2" fill="white" opacity="0.8"/>
-    
-    <!-- Stars -->
-    <g fill="white" opacity="0.8">
-      <path d="M-8 -20 L-7 -18 L-6 -20 L-7 -22 Z"/>
-      <path d="M8 -20 L7 -18 L6 -20 L7 -22 Z"/>
-      <path d="M0 -25 L1 -23 L2 -25 L1 -27 Z"/>
-      <path d="M-4 -15 L-3 -13 L-2 -15 L-3 -17 Z"/>
-      <path d="M4 -15 L3 -13 L2 -15 L3 -17 Z"/>
-    </g>
+  <!-- Text and Icon -->
+  <g class="text">
+    <text x="250" y="150" text-anchor="middle" font-family="cursive" font-size="48">Rehmani's</text>
+    <text x="250" y="400" text-anchor="middle" font-family="sans-serif" font-size="72" font-weight="bold">IMPACT</text>
+    <text x="250" y="450" text-anchor="middle" font-family="sans-serif" font-size="36">CAMPUS</text>
   </g>
   
-  <!-- IMPACT Text -->
-  <text x="100" y="180" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="24" font-weight="bold">IMPACT</text>
-  
-  <!-- CAMPUS Text -->
-  <text x="100" y="200" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">CAMPUS</text>
+  <!-- Graduation Cap and Light Bulb Icon -->
+  <g class="icon">
+    <path d="M250 180 L290 200 L250 220 L210 200 Z"/> <!-- Cap Base -->
+    <rect x="240" y="200" width="20" height="30"/> <!-- Cap Stem -->
+    <path d="M220 230 L280 230 L270 250 L230 250 Z"/> <!-- Cap Bottom -->
+    <path d="M250 260 Q350 260 350 330 Q350 400 250 400 Q150 400 150 330 Q150 260 250 260 Z"/> <!-- Light Bulb -->
+    <circle cx="250" cy="330" r="5"/> <!-- Center Star -->
+    <circle cx="280" cy="310" r="5"/> <!-- Star 1 -->
+    <circle cx="220" cy="310" r="5"/> <!-- Star 2 -->
+    <circle cx="290" cy="350" r="5"/> <!-- Star 3 -->
+    <circle cx="210" cy="350" r="5"/> <!-- Star 4 -->
+  </g>
 </svg> 
