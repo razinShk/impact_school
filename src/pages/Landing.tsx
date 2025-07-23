@@ -4,13 +4,15 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Star, Globe, ArrowRight, BookOpen, Users, Trophy, Award, GraduationCap, TrendingUp, Zap, Target, Heart, Phone, Calendar, FileText, MessageSquare, Shield, Menu, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 const Landing = () => {
   const navigate = useNavigate();
   const [scrollY, setScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showSplash, setShowSplash] = useState(false);
+  const videoRefs = useRef<(HTMLIFrameElement | null)[]>([]);
+  const [hoveredVideo, setHoveredVideo] = useState<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -923,10 +925,25 @@ const Landing = () => {
                 key={index} 
                 className="!bg-transparent !bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-105 hover:-translate-y-2 animate-bounce-in group shadow-lg shadow-black/20"
                 style={{ animationDelay: `${index * 0.1}s` }}
+                onMouseEnter={() => {
+                  setHoveredVideo(index);
+                  const iframe = videoRefs.current[index];
+                  if (iframe && iframe.contentWindow) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+                  }
+                }}
+                onMouseLeave={() => {
+                  setHoveredVideo(null);
+                  const iframe = videoRefs.current[index];
+                  if (iframe && iframe.contentWindow) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                  }
+                }}
               >
                 <div className="relative overflow-hidden rounded-t-lg aspect-video">
                   <iframe 
-                    src={video.embedUrl}
+                    ref={el => videoRefs.current[index] = el}
+                    src={video.embedUrl + (video.embedUrl.includes('?') ? '&' : '?') + 'enablejsapi=1'}
                     title={video.title}
                     className="absolute inset-0 w-full h-full"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

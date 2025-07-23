@@ -31,7 +31,9 @@ const TeacherEnrollment = () => {
     subjects: [] as string[],
     grades: [] as string[],
     coverLetter: '',
-    resume: null as File | null
+    resume: null as File | null,
+    roleType: 'teacher' as 'teacher' | 'other',
+    nonTeachingRole: '' as string
   });
 
   const toggleMobileMenu = () => {
@@ -42,83 +44,11 @@ const TeacherEnrollment = () => {
     setIsMobileMenuOpen(false);
   };
 
-  const handleInputChange = (field: string, value: string | string[] | File) => {
+  const handleInputChange = (field: string, value: string | string[] | File | 'teacher' | 'other' | string) => {
     setFormData(prev => ({
       ...prev,
       [field]: value
     }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Create email content
-    const emailSubject = 'New Teacher Application - Impact School';
-    const emailBody = `
-New Teacher Application Submitted
-
-Personal Information:
-- Name: ${formData.firstName} ${formData.lastName}
-- Email: ${formData.email}
-- Phone: ${formData.phone}
-- Date of Birth: ${formData.dateOfBirth}
-- Address: ${formData.address}
-- City: ${formData.city}
-- State: ${formData.state}
-- Pincode: ${formData.pincode}
-
-Professional Information:
-- Qualification: ${formData.qualification}
-- Specialization: ${formData.specialization}
-- Experience: ${formData.experience}
-- Current/Previous School: ${formData.currentSchool}
-- Expected Salary: ${formData.expectedSalary}
-- Available From: ${formData.availableFrom}
-
-Teaching Preferences:
-- Subjects: ${formData.subjects.join(', ')}
-- Grades: ${formData.grades.join(', ')}
-
-Cover Letter:
-${formData.coverLetter}
-
-Resume: ${formData.resume ? formData.resume.name : 'Not uploaded'}
-
----
-This application was submitted through the Impact School website.
-    `;
-
-    // Create mailto link
-    const mailtoLink = `mailto:impactschool466@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-    
-    // Open email client
-    window.open(mailtoLink, '_blank');
-    
-    // Show success message
-    alert('Thank you for your application! An email has been opened with your application details. Please send the email to complete your application.');
-    
-    // Reset form
-    setFormData({
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      dateOfBirth: '',
-      address: '',
-      city: '',
-      state: '',
-      pincode: '',
-      qualification: '',
-      specialization: '',
-      experience: '',
-      currentSchool: '',
-      expectedSalary: '',
-      availableFrom: '',
-      subjects: [],
-      grades: [],
-      coverLetter: '',
-      resume: null
-    });
   };
 
   const subjects = [
@@ -206,7 +136,7 @@ This application was submitted through the Impact School website.
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-3">
-              <img src="/logo.svg" alt="Rehmani's IMPACT CAMPUS" className="w-16 h-16" />
+              <img src="/impact_logo-removebg-preview.png" alt="Rehmani's IMPACT CAMPUS" className="w-14 h-16" />
               <div>
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent">
                   Rehmani's IMPACT CAMPUS
@@ -217,7 +147,8 @@ This application was submitted through the Impact School website.
               <Link to="/" className="text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform">Home</Link>
               <Link to="/about" className="text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform">About</Link>
               <Link to="/courses" className="text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform">Courses</Link>
-              <Link to="/teacher-enrollment" className="text-purple-300 font-medium">Teacher Enrollment</Link>
+              <Link to="/gallery" className="text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform">Gallery</Link>
+              <Link to="/career" className="text-purple-300 font-medium">Career</Link>
             </nav>
             
             {/* Mobile menu button */}
@@ -285,12 +216,20 @@ This application was submitted through the Impact School website.
                 Courses
               </Link>
               <Link 
-                to="/teacher-enrollment" 
+                to="/gallery" 
+                onClick={closeMobileMenu}
+                className="text-2xl text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform mobile-menu-item"
+                style={{ animationDelay: '0.22s' }}
+              >
+                Gallery
+              </Link>
+              <Link 
+                to="/career" 
                 onClick={closeMobileMenu}
                 className="text-2xl text-purple-300 font-medium mobile-menu-item"
                 style={{ animationDelay: '0.25s' }}
               >
-                Teacher Enrollment
+                Career
               </Link>
               <div className="pt-6 mobile-menu-item" style={{ animationDelay: '0.3s' }}>
                 <Button 
@@ -339,7 +278,21 @@ This application was submitted through the Impact School website.
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-8">
+              <form 
+                name="teacher-enrollment" 
+                method="POST" 
+                data-netlify="true" 
+                data-netlify-honeypot="bot-field" 
+                encType="multipart/form-data"
+                action="/success" 
+                className="space-y-8"
+              >
+                {/* Netlify form hidden fields */}
+                <input type="hidden" name="form-name" value="teacher-enrollment" />
+                <input type="hidden" name="to" value="razinshaikh3133@gmail.com" />
+                <p hidden>
+                  <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+                </p>
                 {/* Personal Information */}
                 <div className="space-y-6">
                   <h3 className="text-2xl font-semibold text-white flex items-center">
@@ -351,6 +304,7 @@ This application was submitted through the Impact School website.
                       <Label htmlFor="firstName" className="text-white">First Name *</Label>
                       <Input
                         id="firstName"
+                        name="firstName"
                         value={formData.firstName}
                         onChange={(e) => handleInputChange('firstName', e.target.value)}
                         className="bg-white/10 border-white/20 text-white placeholder-gray-400"
@@ -362,6 +316,7 @@ This application was submitted through the Impact School website.
                       <Label htmlFor="lastName" className="text-white">Last Name *</Label>
                       <Input
                         id="lastName"
+                        name="lastName"
                         value={formData.lastName}
                         onChange={(e) => handleInputChange('lastName', e.target.value)}
                         className="bg-white/10 border-white/20 text-white placeholder-gray-400"
@@ -373,6 +328,7 @@ This application was submitted through the Impact School website.
                       <Label htmlFor="email" className="text-white">Email Address *</Label>
                       <Input
                         id="email"
+                        name="email"
                         type="email"
                         value={formData.email}
                         onChange={(e) => handleInputChange('email', e.target.value)}
@@ -385,6 +341,7 @@ This application was submitted through the Impact School website.
                       <Label htmlFor="phone" className="text-white">Phone Number *</Label>
                       <Input
                         id="phone"
+                        name="phone"
                         value={formData.phone}
                         onChange={(e) => handleInputChange('phone', e.target.value)}
                         className="bg-white/10 border-white/20 text-white placeholder-gray-400"
@@ -396,6 +353,7 @@ This application was submitted through the Impact School website.
                       <Label htmlFor="dateOfBirth" className="text-white">Date of Birth *</Label>
                       <Input
                         id="dateOfBirth"
+                        name="dateOfBirth"
                         type="date"
                         value={formData.dateOfBirth}
                         onChange={(e) => handleInputChange('dateOfBirth', e.target.value)}
@@ -417,6 +375,7 @@ This application was submitted through the Impact School website.
                       <Label htmlFor="address" className="text-white">Full Address *</Label>
                       <Textarea
                         id="address"
+                        name="address"
                         value={formData.address}
                         onChange={(e) => handleInputChange('address', e.target.value)}
                         className="bg-white/10 border-white/20 text-white placeholder-gray-400"
@@ -430,6 +389,7 @@ This application was submitted through the Impact School website.
                         <Label htmlFor="city" className="text-white">City *</Label>
                         <Input
                           id="city"
+                          name="city"
                           value={formData.city}
                           onChange={(e) => handleInputChange('city', e.target.value)}
                           className="bg-white/10 border-white/20 text-white placeholder-gray-400"
@@ -441,6 +401,7 @@ This application was submitted through the Impact School website.
                         <Label htmlFor="state" className="text-white">State *</Label>
                         <Input
                           id="state"
+                          name="state"
                           value={formData.state}
                           onChange={(e) => handleInputChange('state', e.target.value)}
                           className="bg-white/10 border-white/20 text-white placeholder-gray-400"
@@ -452,6 +413,7 @@ This application was submitted through the Impact School website.
                         <Label htmlFor="pincode" className="text-white">Pincode *</Label>
                         <Input
                           id="pincode"
+                          name="pincode"
                           value={formData.pincode}
                           onChange={(e) => handleInputChange('pincode', e.target.value)}
                           className="bg-white/10 border-white/20 text-white placeholder-gray-400"
@@ -474,6 +436,7 @@ This application was submitted through the Impact School website.
                       <Label htmlFor="qualification" className="text-white">Highest Qualification *</Label>
                       <Input
                         id="qualification"
+                        name="qualification"
                         value={formData.qualification}
                         onChange={(e) => handleInputChange('qualification', e.target.value)}
                         className="bg-white/10 border-white/20 text-white placeholder-gray-400"
@@ -485,6 +448,7 @@ This application was submitted through the Impact School website.
                       <Label htmlFor="specialization" className="text-white">Specialization *</Label>
                       <Input
                         id="specialization"
+                        name="specialization"
                         value={formData.specialization}
                         onChange={(e) => handleInputChange('specialization', e.target.value)}
                         className="bg-white/10 border-white/20 text-white placeholder-gray-400"
@@ -496,6 +460,7 @@ This application was submitted through the Impact School website.
                       <Label htmlFor="experience" className="text-white">Years of Experience *</Label>
                       <Input
                         id="experience"
+                        name="experience"
                         value={formData.experience}
                         onChange={(e) => handleInputChange('experience', e.target.value)}
                         className="bg-white/10 border-white/20 text-white placeholder-gray-400"
@@ -507,6 +472,7 @@ This application was submitted through the Impact School website.
                       <Label htmlFor="currentSchool" className="text-white">Current/Previous School</Label>
                       <Input
                         id="currentSchool"
+                        name="currentSchool"
                         value={formData.currentSchool}
                         onChange={(e) => handleInputChange('currentSchool', e.target.value)}
                         className="bg-white/10 border-white/20 text-white placeholder-gray-400"
@@ -517,6 +483,7 @@ This application was submitted through the Impact School website.
                       <Label htmlFor="expectedSalary" className="text-white">Expected Salary (per month)</Label>
                       <Input
                         id="expectedSalary"
+                        name="expectedSalary"
                         value={formData.expectedSalary}
                         onChange={(e) => handleInputChange('expectedSalary', e.target.value)}
                         className="bg-white/10 border-white/20 text-white placeholder-gray-400"
@@ -527,6 +494,7 @@ This application was submitted through the Impact School website.
                       <Label htmlFor="availableFrom" className="text-white">Available From *</Label>
                       <Input
                         id="availableFrom"
+                        name="availableFrom"
                         type="date"
                         value={formData.availableFrom}
                         onChange={(e) => handleInputChange('availableFrom', e.target.value)}
@@ -537,65 +505,119 @@ This application was submitted through the Impact School website.
                   </div>
                 </div>
 
-                {/* Teaching Preferences */}
+                {/* Role Selection */}
                 <div className="space-y-6">
                   <h3 className="text-2xl font-semibold text-white flex items-center">
                     <BookOpen className="w-6 h-6 mr-2 text-purple-400" />
-                    Teaching Preferences
+                    Select Role
                   </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <Label className="text-white">Subjects You Can Teach *</Label>
-                      <div className="mt-2 space-y-2 max-h-40 overflow-y-auto">
-                        {subjects.map((subject) => (
-                          <label key={subject} className="flex items-center space-x-2">
-                            <input
-                              type="checkbox"
-                              checked={formData.subjects.includes(subject)}
-                              onChange={(e) => {
-                                if (e.target.checked) {
-                                  handleInputChange('subjects', [...formData.subjects, subject]);
-                                } else {
-                                  handleInputChange('subjects', formData.subjects.filter(s => s !== subject));
-                                }
-                              }}
-                              className="rounded border-white/20 bg-white/10 text-purple-600 focus:ring-purple-500"
-                            />
-                            <span className="text-gray-300">{subject}</span>
-                          </label>
-                        ))}
+                  <div className="flex gap-4">
+                    <label className="flex items-center text-white">
+                      <input type="radio" name="roleType" value="teacher" checked={formData.roleType === 'teacher'} onChange={() => handleInputChange('roleType', 'teacher')} className="mr-2" />
+                      Teacher
+                    </label>
+                    <label className="flex items-center text-white">
+                      <input type="radio" name="roleType" value="other" checked={formData.roleType === 'other'} onChange={() => handleInputChange('roleType', 'other')} className="mr-2" />
+                      Other than teacher
+                    </label>
+                  </div>
+                </div>
+
+                {/* Teaching Preferences */}
+                {formData.roleType !== 'other' && (
+                  <div className="space-y-6">
+                    <h3 className="text-2xl font-semibold text-white flex items-center">
+                      <BookOpen className="w-6 h-6 mr-2 text-purple-400" />
+                      Teaching Preferences
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <Label className="text-white">Subjects You Can Teach *</Label>
+                        <div className="mt-2 space-y-2 max-h-40 overflow-y-auto">
+                          {subjects.map((subject) => (
+                            <label key={subject} className="flex items-center space-x-2">
+                              <input
+                                type="checkbox"
+                                name={`subjects[]`}
+                                value={subject}
+                                checked={formData.subjects.includes(subject)}
+                                onChange={(e) => {
+                                  if (e.target.checked) {
+                                    handleInputChange('subjects', [...formData.subjects, subject]);
+                                  } else {
+                                    handleInputChange('subjects', formData.subjects.filter(s => s !== subject));
+                                  }
+                                }}
+                                className="rounded border-white/20 bg-white/10 text-purple-600 focus:ring-purple-500"
+                              />
+                              <span className="text-gray-300">{subject}</span>
+                            </label>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                    <div>
-                      <Label className="text-white">Grades You Can Teach *</Label>
-                      <div className="mt-2 space-y-2 max-h-40 overflow-y-auto">
-                        {grades.map((grade) => (
-                          <label key={grade} className="flex items-center space-x-2">
-                            <input
-                              type="checkbox"
-                              checked={formData.grades.includes(grade)}
-                              onChange={(e) => {
-                                if (e.target.checked) {
-                                  handleInputChange('grades', [...formData.grades, grade]);
-                                } else {
-                                  handleInputChange('grades', formData.grades.filter(g => g !== grade));
-                                }
-                              }}
-                              className="rounded border-white/20 bg-white/10 text-purple-600 focus:ring-purple-500"
-                            />
-                            <span className="text-gray-300">{grade}</span>
-                          </label>
-                        ))}
+                      <div>
+                        <Label className="text-white">Grades You Can Teach *</Label>
+                        <div className="mt-2 space-y-2 max-h-40 overflow-y-auto">
+                          {grades.map((grade) => (
+                            <label key={grade} className="flex items-center space-x-2">
+                              <input
+                                type="checkbox"
+                                name={`grades[]`}
+                                value={grade}
+                                checked={formData.grades.includes(grade)}
+                                onChange={(e) => {
+                                  if (e.target.checked) {
+                                    handleInputChange('grades', [...formData.grades, grade]);
+                                  } else {
+                                    handleInputChange('grades', formData.grades.filter(g => g !== grade));
+                                  }
+                                }}
+                                className="rounded border-white/20 bg-white/10 text-purple-600 focus:ring-purple-500"
+                              />
+                              <span className="text-gray-300">{grade}</span>
+                            </label>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                )}
+                {/* Other than teacher section */}
+                {formData.roleType === 'other' && (
+                  <div className="space-y-6">
+                    <h3 className="text-2xl font-semibold text-white flex items-center">
+                      <BookOpen className="w-6 h-6 mr-2 text-purple-400" />
+                      Non-Teaching Preferences
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <Label className="text-white">Select Non-Teaching Role *</Label>
+                        <div className="mt-2 space-y-2 max-h-40 overflow-y-auto">
+                          {['Clerk', 'Security', 'Peon', 'Receptionist', 'Accountant', 'Librarian'].map((role) => (
+                            <label key={role} className="flex items-center space-x-2">
+                              <input
+                                type="radio"
+                                name="nonTeachingRole"
+                                value={role}
+                                checked={formData.nonTeachingRole === role}
+                                onChange={() => handleInputChange('nonTeachingRole', role)}
+                                className="rounded border-white/20 bg-white/10 text-purple-600 focus:ring-purple-500"
+                              />
+                              <span className="text-gray-300">{role}</span>
+                            </label>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
 
                 {/* Cover Letter */}
                 <div className="space-y-4">
                   <Label htmlFor="coverLetter" className="text-white">Cover Letter *</Label>
                   <Textarea
                     id="coverLetter"
+                    name="coverLetter"
                     value={formData.coverLetter}
                     onChange={(e) => handleInputChange('coverLetter', e.target.value)}
                     className="bg-white/10 border-white/20 text-white placeholder-gray-400"
@@ -610,6 +632,7 @@ This application was submitted through the Impact School website.
                   <Label htmlFor="resume" className="text-white">Resume/CV (PDF) *</Label>
                   <Input
                     id="resume"
+                    name="resume"
                     type="file"
                     accept=".pdf,.doc,.docx"
                     onChange={(e) => handleInputChange('resume', e.target.files?.[0] || null)}
@@ -641,7 +664,7 @@ This application was submitted through the Impact School website.
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div className="animate-slide-up">
               <div className="flex items-center space-x-3 mb-6">
-                <img src="/logo.svg" alt="Rehmani's IMPACT CAMPUS" className="w-16 h-16" />
+                <img src="/impact_logo-removebg-preview.png" alt="Rehmani's IMPACT CAMPUS" className="w-14 h-16" />
                 <span className="text-2xl font-bold bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent">Rehmani's IMPACT CAMPUS</span>
               </div>
               <p className="text-gray-300 leading-relaxed">
@@ -653,7 +676,8 @@ This application was submitted through the Impact School website.
               <ul className="space-y-3 text-gray-300">
                 <li><Link to="/about" className="hover:text-purple-300 transition-colors duration-300 flex items-center group"><Star className="w-4 h-4 mr-2 group-hover:text-yellow-400" />About Us</Link></li>
                 <li><Link to="/courses" className="hover:text-purple-300 transition-colors duration-300 flex items-center group"><Star className="w-4 h-4 mr-2 group-hover:text-yellow-400" />Courses</Link></li>
-                <li><Link to="/teacher-enrollment" className="hover:text-purple-300 transition-colors duration-300 flex items-center group"><Star className="w-4 h-4 mr-2 group-hover:text-yellow-400" />Teacher Enrollment</Link></li>
+                <li><Link to="/gallery" className="hover:text-purple-300 transition-colors duration-300 flex items-center group"><Star className="w-4 h-4 mr-2 group-hover:text-yellow-400" />Gallery</Link></li>
+                <li><Link to="/career" className="hover:text-purple-300 transition-colors duration-300 flex items-center group"><Star className="w-4 h-4 mr-2 group-hover:text-yellow-400" />Career</Link></li>
                 <li><Link to="/admission" className="hover:text-purple-300 transition-colors duration-300 flex items-center group"><Star className="w-4 h-4 mr-2 group-hover:text-yellow-400" />Student Enrollment</Link></li>
               </ul>
             </div>
