@@ -13,6 +13,7 @@ import AdmissionForm from "./pages/AdmissionForm";
 import TeacherEnrollment from "./pages/TeacherEnrollment";
 import Gallery from "./pages/Gallery";
 import NotFound from "./pages/NotFound";
+import Success from "./pages/Success";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Index />} />
+          <Route path="/success" element={<Success />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
